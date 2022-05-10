@@ -4,8 +4,8 @@ import numpy as np
 import math
 import time
 import pandas as pd
-from sklearn.svm import SVC
-from EAR_module import euclideanDistance, eye_aspect_ratio
+from sklearn.linear_model import LogisticRegression
+from calculator_module import euclideanDistance, eye_aspect_ratio
 import joblib
 
 # 폰트 색상 지정
@@ -189,7 +189,7 @@ def create_EARlist():
 def create_logistic_model():
     close_ear, open_ear = create_EARlist()
     
-    classifier = SVC(kernel = 'linear', C=1)
+    classifier = LogisticRegression()
 
     ones = np.ones_like(close_ear)
     zeros = np.zeros_like(open_ear)
@@ -202,4 +202,4 @@ def create_logistic_model():
 
     classifier.fit(X,y)
 
-    joblib.dump(classifier, './pkl/ear_svm.pkl')
+    joblib.dump(classifier, './pkl/ear_logistic.pkl')

@@ -53,7 +53,7 @@ def create_AtanMean():
                 image.flags.writeable = True
                 image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
-                cv2.putText(image, "Look at the right end of the monitor and press q", (50, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, red, 3, font_scale=0.5)
+                cv2.putText(image, "Look at the right end of the monitor and press q", (50, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, red, 3)
                 cv2.imshow('hello', image)
 
                 if cv2.waitKey(5) & 0xFF == ord('q'):
