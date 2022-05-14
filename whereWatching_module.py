@@ -21,7 +21,9 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_face_mesh = mp.solutions.face_mesh
 
-def create_AtanMean():
+angle_right, angle_left = 0.0, 0.0
+
+def set_AtanMean():
     drawing_spec = mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
     cap = cv2.VideoCapture(0)
 
@@ -187,4 +189,14 @@ def create_AtanMean():
 
     angle_left = np.mean(angle_left_) 
     
-    return angle_right, angle_left
+    f = open("./pkl/atanModel.txt", 'w')
+    f.write(str(angle_right)+"\n"+str(angle_left))
+    f.close()
+
+
+def get_AtanMeans():
+    f = open("./pkl/atanModel.txt", 'r')
+    angle_right_ = f.readline().strip()
+    angle_left_ = f.readline()
+    f.close()
+    return angle_right_, angle_left_
